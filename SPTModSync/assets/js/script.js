@@ -19,7 +19,7 @@ const api = () => (window.pywebview && window.pywebview.api) ? window.pywebview.
 // Fallback embutido (PT-PT) — garante que a app NUNCA fica em inglês se faltar o ficheiro de idioma.
 const FALLBACK_LANG = {
   "app_name": "ModSync",
-  "app_title": "SPT Mod Sync v0.1 - Beta",
+  "app_title": "SPT Mod Sync v0.5 - Beta",
   "peers": "peers · LAN/VPN",
   "publish": "Publicar",
   "update": "Actualizar",
@@ -103,7 +103,7 @@ const FALLBACK_LANG = {
 // Fallback embutido (EN) — garante que a troca para EN funciona mesmo se o ficheiro externo falhar.
 const FALLBACK_EN = {
   "app_name": "ModSync",
-  "app_title": "SPT Mod Sync v0.1 - Beta",
+  "app_title": "SPT Mod Sync v0.5 - Beta",
   "peers": "peers · LAN/VPN",
   "publish": "Publish",
   "update": "Update",
