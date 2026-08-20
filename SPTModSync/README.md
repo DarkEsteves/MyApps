@@ -1,16 +1,39 @@
 # SPT Mod Sync
 
-SPT/EFT mod sharing between peers — no browser. Publish patches, receive updates from your buddy (or yourself) and keep everything synced over LAN or VPN (Radmin).
+> **Fork / reimplementação** de [Hashimini/SPTMODU-PDATER](https://github.com/Hashimini/SPTMODU-PDATER) + [Hashimini/SPTMODU-PDATERpanel](https://github.com/Hashimini/SPTMODU-PDATERpanel) — portado para uma app desktop nativa em Python/PyWebView, sem browser e sem servidor separado.
 
-Partilha de mods SPT/EFT entre peers — sem browser. Publica patches, recebe updates do teu colega (ou de ti próprio) e mantém tudo sincronizado via LAN ou VPN (Radmin).
+---
+
+## Origem / Origin
+
+Este projeto é um **fork funcional** do **MODU-PDATER**, um *mod updater* feito em .NET 8 para sincronizar mods SPT/EFT entre amigos via servidor local. O original é composto por duas partes:
+
+| Componente | Original | Licença |
+|---|---|---|
+| Launcher (.NET 8) | [Hashimini/SPTMODU-PDATER](https://github.com/Hashimini/SPTMODU-PDATER) | MIT |
+| Servidor (Flask) | [Hashimini/SPTMODU-PDATERpanel](https://github.com/Hashimini/SPTMODU-PDATERpanel) | MIT |
+
+Créditos ao autor original **Hashimini** pela ideia, arquitetura de *chunked upload* e pelo formato de *patches* (`versions.json` + zip).
+
+### O que muda neste fork
+
+- **App única em Python/PyWebView** — o launcher e o servidor Flask correm dentro da mesma janela desktop (WebView2), sem abrir browser nem consola separada.
+- **Servidor embutido** — o `server.py` original foi integrado e corre em *thread* dentro da app.
+- **i18n completo PT-PT / EN** — ficheiros externos `Data/Lang/*.json`.
+- **Fluxo "Fazer Patch" + "Publicar"** — separa a criação do zip (local) do envio (upload).
+- **Auto-update da própria app** via GitHub Releases (repo `DarkEsteves/MyApps`).
+
+---
 
 ## Features / Funcionalidades
 
-- **Publish / Publicar** — select files, make a patch (zip), then send it to a server.
-- **Update / Actualizar** — receive patches: download, remove obsolete files, extract into SPT folder.
-- **Embedded Flask server / Servidor Flask embutido** — runs inside the app, no extra window.
-- **i18n PT-PT / EN** — full UI translation, external `Data/Lang/*.json`.
-- **Auto-update / Auto-atualização** — checks GitHub Releases for new versions.
+- **Publish / Publicar** — seleciona ficheiros na árvore, faz um *patch* (zip local), e envia para o servidor.
+- **Update / Actualizar** — recebe patches: descarrega, remove obsoletos, extrai para a pasta SPT.
+- **Servidor Flask embutido** — corre dentro da app, sem janela extra.
+- **i18n PT-PT / EN** — UI e logs traduzidos, fallback embutido.
+- **Auto-update / Auto-atualização** — verifica GitHub Releases e atualiza ao reiniciar.
+
+---
 
 ## Build / Compilar
 
@@ -18,8 +41,16 @@ Partilha de mods SPT/EFT entre peers — sem browser. Publica patches, recebe up
 pyinstaller SPTModSync.spec
 ```
 
-The spec bundles `index.html`, `assets/` and `Data/Server/server.py`. External editable data (`Data/Lang`, `Data/Logs`, `Data/Patches`) lives next to the exe at runtime.
+O `.spec` empacota `index.html`, `assets/` e `Data/Server/server.py`. Dados externos editáveis (`Data/Lang`, `Data/Logs`, `Data/Patches`) ficam junto ao exe em *runtime*.
+
+---
 
 ## Version / Versão
 
 v0.5 - Beta
+
+---
+
+## License / Licença
+
+MIT — herdado do projeto original. Ver [LICENSE](./LICENSE) do repo upstream para os termos completos.

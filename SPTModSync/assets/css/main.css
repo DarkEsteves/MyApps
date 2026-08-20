@@ -1782,6 +1782,15 @@ input:focus-visible { outline: none; }
   text-overflow: ellipsis;
 }
 
+/* Botão de descarregar atualização (maior) */
+#btn-check-app-update.btn-download {
+  width: 100%;
+  padding: 12px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-left: 0 !important;
+}
+
 /* ── Barra de progresso do patch (sempre visível) ── */
 .patch-progress {
   position: relative;

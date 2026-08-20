@@ -623,7 +623,10 @@ function setProgress(prefix, d) {
   const pct = document.getElementById(prefix + '-pct');
   const wrap = document.getElementById(prefix + '-progress');
   const st = document.getElementById(prefix + '-status');
-  if (wrap) wrap.style.display = 'block';
+  if (wrap) {
+    wrap.style.display = 'block';
+    wrap.classList.remove('disabled');
+  }
   if (bar) bar.style.width = (d.pct || 0) + '%';
   if (pct) pct.textContent = (d.pct || 0) + '%';
   if (st) st.textContent = d.msg || '';
@@ -645,11 +648,13 @@ async function checkAppUpdate() {
   if (d.update && d.latest) {
     st.innerHTML = `⬇ <b>${d.latest.version}</b> ${t('new_version')}`;
     btn.textContent = t('download');
+    btn.classList.add('btn-download');
     btn.onclick = () => { api().download_app_update(d.latest.url); };
   } else {
     st.textContent = '✅ ' + t('up_to_date');
     st.classList.add('ok');
     btn.textContent = t('check_app_update');
+    btn.classList.remove('btn-download');
     btn.onclick = checkAppUpdate;
   }
 }
